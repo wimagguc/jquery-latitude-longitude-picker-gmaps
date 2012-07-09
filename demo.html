@@ -20,11 +20,15 @@
 	<h1>Google Maps Latitude and Longitude Picker</h1>
 
 	<div class="description">
-		<b>A jQuery plugin that creates a Latitude and Longitude picker on the page using Google Maps.</b>
+		<b>A jQuery plugin that creates a location picker on your webpage using Google Maps.</b>
 		<br/><br>
-		Supports multiple maps. Easy to customize markup and CSS.
+		Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
 		<br/><br>
-		This is the demo page. For the code, the install instructions and to see how amazingly free it is, <a href="https://github.com/wimagguc/jquery-latitude-longitude-picker-gmaps">go to Github</a>.
+		This is a demo page; the newest live demo will always be <a href="http://wimagguc.hu/projects/jquery-latitude-longitude-picker-gmaps/">here</a>.
+		<br/>
+		For the code, install instructions and to see how amazingly free it is, <a href="https://github.com/wimagguc/jquery-latitude-longitude-picker-gmaps">go to Github</a>.
+		<br/>
+		Also, you might find other interesting things on my blog at <a href="http://wimagguc.hu/">wimagguc.hu</a>.<br/>
 	</div>
 
 	<H2>The simplest form</H2>
@@ -43,6 +47,7 @@
 		<input type="hidden" class="gllpLatitude"/>
 		<input type="hidden" class="gllpLongitude"/>
 		<input type="hidden" class="gllpZoom"/>
+		<input type="hidden" class="gllpLocationName"/>
 	</fieldset>
 
 	<div class="code">
@@ -87,6 +92,40 @@
 	&lt;input type="hidden" class="gllpLatitude" value="60"/&gt;
 	&lt;input type="hidden" class="gllpLongitude" value="30"/&gt;
 	&lt;input type="hidden" class="gllpZoom" value="12"/&gt;
+&lt;/fieldset&gt;
+</pre>
+	</div>
+
+	<H2>Reverse lookup: retrieves the location name once it's picked</H2>
+
+	<div class="description">
+		<ul>
+			<li>After the position change you'll have the location name in the gllpLocationName field.</li>
+			<li>If there is no value, the field will be emptied.</li> 
+			<li>The "location_changed" event will also be fired with the gllLatlonPicker Node JQuery object as attribute.</li> 
+		</ul>
+		<br/><br/>
+		Move the marker, or double click on the map.
+	</div>
+
+	<fieldset class="gllpLatlonPicker">
+		<div class="gllpMap">Google Maps</div>
+		<br/>
+		<input type="hidden" class="gllpLatitude"/>
+		<input type="hidden" class="gllpLongitude"/>
+		<input type="hidden" class="gllpZoom"/>
+		<input type="text" class="gllpLocationName" size=42/>
+	</fieldset>
+
+	<div class="code">
+<pre>
+&lt;fieldset class="gllpLatlonPicker"&gt;
+	&lt;div class="gllpMap"&gt;Google Maps&lt;/div&gt;
+	&lt;br/&gt;
+	&lt;input type="hidden" class="gllpLatitude"/&gt;
+	&lt;input type="hidden" class="gllpLongitude"/&gt;
+	&lt;input type="hidden" class="gllpZoom"/&gt;
+	&lt;input type="text" class="gllpLocationName" size=42/&gt;
 &lt;/fieldset&gt;
 </pre>
 	</div>

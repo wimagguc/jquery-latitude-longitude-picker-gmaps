@@ -1,8 +1,9 @@
 /**
  * 	
- * A JQUERY GOOGLE MAPS LATITUDE AND LONGITUDE LOCATION PICKER 
+ * A JQUERY GOOGLE MAPS LATITUDE AND LONGITUDE LOCATION PICKER
+ * version 1.1
  * 
- * Supports multiple maps. Easy to customize markup and CSS.
+ * Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
  * 
  * To see a live demo, go to:
  * http://wimagguc.hu/projects/jquery-latitude-longitude-picker-gmaps/
@@ -22,6 +23,7 @@ var GMapsLatLonPicker = (function() {
 		defLat : 0,
 		defLng : 0,
 		defZoom : 1,
+		queryLocationNameWhenLatLngChanges: true,
 		mapOptions : {
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			mapTypeControl: false,
@@ -58,6 +60,51 @@ var GMapsLatLonPicker = (function() {
 		$(_self.vars.cssID + ".gllpLatitude").val( position.lat() );
 		
 		$(_self.vars.cssID).trigger("location_changed", $(_self.vars.cssID));
+		
+		if (_self.params.queryLocationNameWhenLatLngChanges) {
+			getLocationName(position);
+		}
+    };
+    
+    // for reverse geocoding
+    var getLocationName = function(position) {
+		var latlng = new google.maps.LatLng(position.lat(), position.lng());
+    	_self.vars.geocoder.geocode({'latLng': latlng}, function(results, status) {
+    		if (status == google.maps.GeocoderStatus.OK && results[1]) {
+          		$(_self.vars.cssID + ".gllpLocationName").val(results[1].formatted_address);
+          	} else {
+          		$(_self.vars.cssID + ".gllpLocationName").val("");
+          	}
+		});
+    };
+
+	// search function
+    var performSearch = function(string, silent) {
+		if (string == "") {
+			if (!silent) {
+				displayError( _self.params.strings.error_empty_field );
+			}
+			return;
+		}
+		_self.vars.geocoder.geocode(
+			{"address": string},
+			function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					$(_self.vars.cssID + ".gllpZoom").val(11);
+					_self.vars.map.setZoom( parseInt($(_self.vars.cssID + ".gllpZoom").val()) );
+					setPosition( results[0].geometry.location );
+				} else {
+					if (!silent) {
+						displayError( _self.params.strings.error_no_results );
+					}
+				}
+			}
+		);
+    };
+    
+    // error function
+    var displayError = function(message) {
+    	alert(message);
     };
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +113,7 @@ var GMapsLatLonPicker = (function() {
 
 		// INITIALIZE MAP ON DIV //////////////////////////////////////////////////////////////////
 		init : function(object) {
-			
+
 			if ( !$(object).attr("id") ) {
 				if ( $(object).attr("name") ) {
 					$(object).attr("id", $(object).attr("name") );
@@ -122,26 +169,16 @@ var GMapsLatLonPicker = (function() {
 				_self.vars.map.setZoom( parseInt( $(_self.vars.cssID + ".gllpZoom").val() ) );
 				setPosition(latlng);
 			});
-		
-			// Try to get  
+
+			// Search function by search button
 			$(_self.vars.cssID + ".gllpSearchButton").bind("click", function() {
-				if ($(_self.vars.cssID + ".gllpSearchField").val() == "") {
-					alert( _self.params.strings.error_empty_field );
-					return;
-				}
-				_self.vars.geocoder.geocode(
-					{"address": $(_self.vars.cssID + ".gllpSearchField").val() },
-					function(results, status) {
-						if (status == google.maps.GeocoderStatus.OK) {
-							$(_self.vars.cssID + ".gllpZoom").val(11);
-							_self.vars.map.setZoom( parseInt($(_self.vars.cssID + ".gllpZoom").val()) );
-							setPosition( results[0].geometry.location );
-						} else {
-							alert( _self.params.strings.error_no_results );
-						}
-					});
+				performSearch( $(_self.vars.cssID + ".gllpSearchField").val(), false );
 			});
 
+			// Search function by gllp_perform_search listener
+			$(document).bind("gllp_perform_search", function(event, object) {
+				performSearch( $(object).attr('string'), true );
+			});
 		}
 
 	}
@@ -158,6 +195,4 @@ $(document).ready( function() {
 
 $(document).bind("location_changed", function(event, object) {
 	console.log("changed: " + $(object).attr('id') );
-	
-	
 });

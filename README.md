@@ -1,12 +1,18 @@
 jquery-latitude-longitude-picker-gmaps
 ======================================
 
-A jQuery plugin that creates a Latitude and Longitude picker on the page using Google Maps.
+A jQuery plugin that creates a location picker on your webpage using Google Maps. 
 
-Supports multiple maps. Easy to customize markup and CSS.
+Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS. 
 
 To see a live demo, go to:
 http://wimagguc.hu/projects/jquery-latitude-longitude-picker-gmaps/
+
+
+CHANGES
+=======
+
+- Reverse lookup: after you move a marker, the location's name will be retrieved by the picked lat/lng values
 
 
 MORE INFO
@@ -19,6 +25,12 @@ With search field:
 - If the search has results, the first element will appear on the map (with the default zoom value 11)
 - You can set default latitude, longitude and zoom values in the hidden fields
 - If you don't give an ID to the map, the script generates one; feel free to use custom ID's though
+
+With reverse lookup:
+- To disable it, set queryLocationNameWhenLatLngChanges to false among the params 
+- After the position change you'll have the location name in the gllpLocationName field
+- If there is no value, the field will be emptied
+- The "location_changed" event will also be fired with the gllLatlonPicker Node JQuery object as attribute
 
 With latitude, longitude and zoom fields:
 - You can set your own latitude, longitude and zoom values. The map shows your data after pressing the update button.
@@ -63,6 +75,7 @@ ABOUT
 
 Richard Dancsi
 http://wimagguc.hu/
+http://twitter.com/wmguk
 
 Zenfield Ltd.
 http://zenfield.com/
