@@ -96,13 +96,15 @@
 </pre>
 	</div>
 
-	<H2>Reverse lookup: retrieves the location name once it's picked</H2>
+	<H2>Reverse lookup: retrieves the location name and elevation once it's picked</H2>
 
 	<div class="description">
 		<ul>
 			<li>After the position change you'll have the location name in the gllpLocationName field.</li>
 			<li>If there is no value, the field will be emptied.</li> 
 			<li>The "location_changed" event will also be fired with the gllLatlonPicker Node JQuery object as attribute.</li> 
+			<li>The "location_name_changed" event will be fired after we received the name of the selected location.</li> 
+			<li>The "elevation_changed" event will be fired after we received the elevation value.</li> 
 		</ul>
 		<br/><br/>
 		Move the marker, or double click on the map.
@@ -114,7 +116,8 @@
 		<input type="hidden" class="gllpLatitude"/>
 		<input type="hidden" class="gllpLongitude"/>
 		<input type="hidden" class="gllpZoom"/>
-		<input type="text" class="gllpLocationName" size=42/>
+		name: <input type="text" class="gllpLocationName" size=42/><br/>
+		elevation: <input type="text" class="gllpElevation" size=12/>m
 	</fieldset>
 
 	<div class="code">
@@ -180,7 +183,7 @@
 		Richard Dancsi<br/>
 		<a href="http://wimagguc.hu/">http://wimagguc.hu/</a>
 		<br/>
-		<a href="http://twitter.com/wmguk">wmguk@twitter</a>
+		<a href="http://twitter.com/wimagguc">wimagguc@twitter</a>
 		<br/><br/>
 		Used at <a href="http://divespy.com/">http://divespy.com/</a> 
 		<br/><br/>
