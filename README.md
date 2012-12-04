@@ -6,7 +6,7 @@ A jQuery plugin that creates a location picker on your webpage using Google Maps
 Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS. 
 
 To see a live demo, go to:
-http://wimagguc.hu/projects/jquery-latitude-longitude-picker-gmaps/
+http://www.wimagguc.com/projects/jquery-latitude-longitude-picker-gmaps/
 
 
 CHANGES
@@ -74,8 +74,10 @@ ABOUT
 =====
 
 Richard Dancsi
-http://wimagguc.hu/
-http://twitter.com/wmguk
+blog: http://www.wimagguc.com/
+twitter: http://twitter.com/wimagguc
+linkedin: http://linkedin.com/in/richarddancsi
+gplus: https://plus.google.com/u/0/115939246085616544919
 
 Zenfield Ltd.
 http://zenfield.com/
