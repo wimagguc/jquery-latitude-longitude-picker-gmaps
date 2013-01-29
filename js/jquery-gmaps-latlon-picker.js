@@ -13,6 +13,11 @@
  * 
  */
 
+// for ie9 doesn't support debug console >>>
+if (!window.console) window.console = {};
+if (!window.console.log) window.console.log = function () { };
+// ^^^
+
 var GMapsLatLonPicker = (function() {
 
 	var _self = this;
