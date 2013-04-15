@@ -41,14 +41,19 @@ INSTALL
 =======
 
 Import jQuery and Google Maps:
+````
 <script src="js/jquery-1.7.2.min.js"></script>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+````
 
 Import the plugin:
+````
 <link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
 <script src="js/jquery-gmaps-latlon-picker.js"></script>
+````
 
 Add a HTML markup:
+````
 <fieldset class="gllpLatlonPicker">
 	<input type="text" class="gllpSearchField">
     <input type="button" class="gllpSearchButton" value="search">
@@ -57,7 +62,7 @@ Add a HTML markup:
 	<input type="hidden" class="gllpLongitude" value="20"/>
 	<input type="hidden" class="gllpZoom" value="3"/>
 </fieldset>
-
+````
 (See more options in the demo.html)
 
 
