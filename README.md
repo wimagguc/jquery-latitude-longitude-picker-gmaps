@@ -75,14 +75,13 @@ This code uses the jQuery Javascript library and the Google Maps API. To read mo
 http://jquery.com/
 https://developers.google.com/maps/
 
+
 ABOUT
 =====
 
 Richard Dancsi
-blog: http://www.wimagguc.com/
-twitter: http://twitter.com/wimagguc
-linkedin: http://linkedin.com/in/richarddancsi
-gplus: https://plus.google.com/u/0/115939246085616544919
 
-Zenfield Ltd.
-http://zenfield.com/
+- Blog: http://www.wimagguc.com/
+- Twitter: http://twitter.com/wimagguc
+- Linkedin: http://linkedin.com/in/richarddancsi
+- Google+: https://plus.google.com/u/0/115939246085616544919
