@@ -214,6 +214,15 @@ var GMapsLatLonPicker = (function() {
 			$(document).bind("gllp_perform_search", function(event, object) {
 				performSearch( $(object).attr('string'), true );
 			});
+
+			// Zoom function triggered by gllp_perform_zoom listener
+			$(document).bind("gllp_update_fields", function(event) {
+				var lat = $(_self.vars.cssID + ".gllpLatitude").val();
+				var lng = $(_self.vars.cssID + ".gllpLongitude").val();
+				var latlng = new google.maps.LatLng(lat, lng);
+				_self.vars.map.setZoom( parseInt( $(_self.vars.cssID + ".gllpZoom").val() ) );
+				setPosition(latlng);
+			});
 		}
 
 	}
