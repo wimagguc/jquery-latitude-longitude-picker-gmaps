@@ -1,7 +1,7 @@
 /**
  * 	
  * A JQUERY GOOGLE MAPS LATITUDE AND LONGITUDE LOCATION PICKER
- * version 1.2
+ * version 1.2_async
  * 
  * Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
  * 
@@ -19,6 +19,27 @@
 if (!window.console) window.console = {};
 if (!window.console.log) window.console.log = function () { };
 // ^^^
+
+var loadGoogleMapsAPI = function(callback){
+	
+	//Make sure the API is not already loaded.
+	if(window.google && google.maps){
+		callback();
+	}
+	
+	//When it is not, let the API do the callback.
+	else {
+		
+		window.jquery_gllp_init = function(){
+			callback();
+			delete window.jquery_gllp_init;
+		};
+		
+		$.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&callback=jquery_gllp_init');
+		
+	}
+	
+};
 
 var GMapsLatLonPicker = (function() {
 
@@ -230,11 +251,15 @@ var GMapsLatLonPicker = (function() {
 	return publicfunc;
 });
 
-$(document).ready( function() {
-	$(".gllpLatlonPicker").each(function() {
-		(new GMapsLatLonPicker()).init( $(this) );
-	});
-});
+$(document).ready(
+	
+	loadGoogleMapsAPI(function() {
+		$(".gllpLatlonPicker").each(function() {
+			(new GMapsLatLonPicker()).init( $(this) );
+		});
+	})
+	
+);
 
 $(document).bind("location_changed", function(event, object) {
 	console.log("changed: " + $(object).attr('id') );

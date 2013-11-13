@@ -43,7 +43,6 @@ INSTALL
 Import jQuery and Google Maps:
 ````
 <script src="js/jquery-1.7.2.min.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 ````
 
 Import the plugin:
