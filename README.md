@@ -12,6 +12,23 @@ http://www.wimagguc.com/projects/jquery-latitude-longitude-picker-gmaps/
 CHANGES
 =======
 
+
+**Version 1.3**
+
+*Features:*
+
+- Loads the Google Maps API asynchronously when it's not already present.
+- `$.fn.GMapsLatLonPicker()` has been added to enable external scripts to initialize new maps.
+- `location_name_changed` event now has an extra parameter: `result[0]` of the Google Maps address matches.
+- Search field now searches when pressing [Enter].
+
+*Bugfixes:*
+
+- `gllp_perform_search` and `gllp_update_fields` events are no longer bound on the `document`. Instead uses the CSS ID of the wrapper div. This prevents maps from updating when they are already removed from the DOM (would result in "too much recursion" errors).
+- Global `console.log` call has been removed, for the sake of not cluttering the console.
+
+**Version 1.2**
+
 - Reverse lookup: after you move a marker, the location's name will be retrieved by the picked lat/lng values
 
 
@@ -40,12 +57,12 @@ With latitude, longitude and zoom fields:
 INSTALL
 =======
 
-Import jQuery and Google Maps:
+Import jQuery:
 ````
 <script src="js/jquery-1.7.2.min.js"></script>
 ````
 
-Import the plugin:
+Import the plugin (automatically imports Google Maps API):
 ````
 <link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
 <script src="js/jquery-gmaps-latlon-picker.js"></script>
