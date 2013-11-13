@@ -20,24 +20,38 @@ if (!window.console) window.console = {};
 if (!window.console.log) window.console.log = function () { };
 // ^^^
 
+var APILoading = null;
+
 var loadGoogleMapsAPI = function(callback){
 	
-	//Make sure the API is not already loaded.
-	if(window.google && google.maps){
-		callback();
-	}
+	//Create a deferred object for loading.
+	var APILoader = $.Deferred();
+	APILoading = APILoader.promise();
 	
-	//When it is not, let the API do the callback.
-	else {
+	//Add the callback provided.
+	APILoading.done(callback);
+	
+	//Wait for the document ready.
+	$(document).ready(function(){
 		
-		window.jquery_gllp_init = function(){
-			callback();
-			delete window.jquery_gllp_init;
-		};
+		//Make sure the API is not already loaded.
+		if(window.google && google.maps){
+			APILoader.resolve();
+		}
 		
-		$.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&callback=jquery_gllp_init');
+		//When it is not, let the API do the callback.
+		else {
+			
+			window.jquery_gllp_init = function(){
+				APILoader.resolve();
+				delete window.jquery_gllp_init;
+			};
+			
+			$.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&callback=jquery_gllp_init');
+			
+		}
 		
-	}
+	});
 	
 };
 
@@ -261,23 +275,24 @@ var GMapsLatLonPicker = (function() {
 //jQuery extension.
 $.fn.GMapsLatLonPicker = function(){
 	
-	$(this).each(function(){
-		(new GMapsLatLonPicker()).init($(this));
+	//Makes sure that the extension does not try to execute before the API is loaded.
+	APILoading.done(function(){
+		
+		$(this).each(function(){
+			(new GMapsLatLonPicker()).init($(this));
+		});
+		
 	});
 	
 	return $(this);
 	
 };
 
-$(document).ready(
-	
-	loadGoogleMapsAPI(function() {
-		$(".gllpLatlonPicker").each(function() {
-			(new GMapsLatLonPicker()).init( $(this) );
-		});
-	})
-	
-);
+loadGoogleMapsAPI(function() {
+	$(".gllpLatlonPicker").each(function() {
+		(new GMapsLatLonPicker()).init( $(this) );
+	});
+});
 
 $(document).bind("location_changed", function(event, object) {
 	console.log("changed: " + $(object).attr('id') );
