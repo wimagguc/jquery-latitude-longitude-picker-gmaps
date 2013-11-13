@@ -1,7 +1,7 @@
 /**
  * 	
  * A JQUERY GOOGLE MAPS LATITUDE AND LONGITUDE LOCATION PICKER
- * version 1.2_async_enter-search
+ * version 1.2_async_enter-search_jq-extension
  * 
  * Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
  * 
@@ -255,7 +255,19 @@ var GMapsLatLonPicker = (function() {
 	}
 	
 	return publicfunc;
+	
 });
+
+//jQuery extension.
+$.fn.GMapsLatLonPicker = function(){
+	
+	$(this).each(function(){
+		(new GMapsLatLonPicker()).init($(this));
+	});
+	
+	return $(this);
+	
+};
 
 $(document).ready(
 	
