@@ -1,7 +1,7 @@
 /**
  * 	
  * A JQUERY GOOGLE MAPS LATITUDE AND LONGITUDE LOCATION PICKER
- * version 1.2_async_enter-search_jq-extension
+ * version 1.3
  * 
  * Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
  * 
@@ -21,7 +21,6 @@ if (!window.console.log) window.console.log = function () { };
 // ^^^
 
 var APILoading = null;
-
 var loadGoogleMapsAPI = function(callback){
 	
 	//Create a deferred object for loading.
@@ -121,7 +120,7 @@ var GMapsLatLonPicker = (function() {
 			} else {
 				$(_self.vars.cssID + ".gllpLocationName").val("");
 			}
-			$(_self.vars.cssID).trigger("location_name_changed", $(_self.vars.cssID));
+			$(_self.vars.cssID).trigger("location_name_changed", [$(_self.vars.cssID), results[0]]);
 		});
 	};
 
@@ -182,7 +181,7 @@ var GMapsLatLonPicker = (function() {
 
 		// INITIALIZE MAP ON DIV //////////////////////////////////////////////////////////////////
 		init : function(object) {
-
+			
 			if ( !$(object).attr("id") ) {
 				if ( $(object).attr("name") ) {
 					$(object).attr("id", $(object).attr("name") );
@@ -241,9 +240,11 @@ var GMapsLatLonPicker = (function() {
 			});
 
 			// Search function by pressing [Enter] on search field
-			$(_self.vars.cssID + ".gllpSearchField").bind("keyup", function(e) {
-				if(e.keyCode == 13)
+			$(_self.vars.cssID + ".gllpSearchField").bind("keypress", function(e) {
+				if(e.keyCode == 13){
+					e.preventDefault();
 					performSearch( $(_self.vars.cssID + ".gllpSearchField").val(), false );
+				}
 			});
 			
 			// Search function by search button
@@ -252,12 +253,12 @@ var GMapsLatLonPicker = (function() {
 			});
 
 			// Search function by gllp_perform_search listener
-			$(document).bind("gllp_perform_search", function(event, object) {
+			$(_self.vars.cssID).bind("gllp_perform_search", function(event, object) {
 				performSearch( $(object).attr('string'), true );
 			});
 
 			// Zoom function triggered by gllp_perform_zoom listener
-			$(document).bind("gllp_update_fields", function(event) {
+			$(_self.vars.cssID).bind("gllp_update_fields", function(event) {
 				var lat = $(_self.vars.cssID + ".gllpLatitude").val();
 				var lng = $(_self.vars.cssID + ".gllpLongitude").val();
 				var latlng = new google.maps.LatLng(lat, lng);
@@ -275,16 +276,22 @@ var GMapsLatLonPicker = (function() {
 //jQuery extension.
 $.fn.GMapsLatLonPicker = function(){
 	
-	//Makes sure that the extension does not try to execute before the API is loaded.
-	APILoading.done(function(){
-		
-		$(this).each(function(){
+	var $elements = $(this);
+	
+	//Store our task.
+	var initialize = function(){
+		$elements.each(function(){
 			(new GMapsLatLonPicker()).init($(this));
 		});
-		
-	});
+	};
 	
-	return $(this);
+	//Makes sure that the extension does not try to execute before the API is loaded.
+	if(!APILoading.isResolved())
+		APILoading.done(initialize);
+	else
+		initialize();
+	
+	return $elements;
 	
 };
 
@@ -292,10 +299,6 @@ loadGoogleMapsAPI(function() {
 	$(".gllpLatlonPicker").each(function() {
 		(new GMapsLatLonPicker()).init( $(this) );
 	});
-});
-
-$(document).bind("location_changed", function(event, object) {
-	console.log("changed: " + $(object).attr('id') );
 });
 
 }(jQuery));
