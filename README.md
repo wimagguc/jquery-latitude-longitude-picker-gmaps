@@ -1,79 +1,87 @@
-jquery-latitude-longitude-picker-gmaps
-======================================
+jQuery Latitude and Longitude Picker for Google Maps
+====================================================
 
-A jQuery plugin that creates a location picker on your webpage using Google Maps. 
+**A jQuery Latitude and Longitude plugin to pick a location using Google Maps.**
 
-Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS. 
+Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
 
-To see a live demo, go to:
-http://www.wimagguc.com/projects/jquery-latitude-longitude-picker-gmaps/
-
-
-CHANGES
-=======
-
-- Reverse lookup: after you move a marker, the location's name will be retrieved by the picked lat/lng values
+[Check out the live demos.](http://www.wimagguc.com/2013/06/jquery-latitude-and-longitude-picker-gmaps/)
 
 
-MORE INFO
-=========
+FEATURES
+========
 
-- After every position change you'll have the fresh lattitude, longitude and zoom values in the hidden fields
-- The "location_changed" event will also be fired with the gllLatlonPicker Node JQuery object as attribute
+**Basic functions**
 
-With search field:
+- Move the marker on the map to receive the updated latitude, longitude and zoom values in the hidden fields
+
+- "location_changed" event will be fired, with the gllLatlonPicker Node JS object as attribute for easy access
+
+**Map with location search field:**
+
 - If the search has results, the first element will appear on the map (with the default zoom value 11)
+
 - You can set default latitude, longitude and zoom values in the hidden fields
-- If you don't give an ID to the map, the script generates one; feel free to use custom ID's though
 
-With reverse lookup:
-- To disable it, set queryLocationNameWhenLatLngChanges to false among the params 
-- After the position change you'll have the location name in the gllpLocationName field
-- If there is no value, the field will be emptied
-- The "location_changed" event will also be fired with the gllLatlonPicker Node JQuery object as attribute
+- Use any custom id you want
 
-With latitude, longitude and zoom fields:
-- You can set your own latitude, longitude and zoom values. The map shows your data after pressing the update button.
-- You can still hide the Zoom field (or any other fields)
+**Map with reverse lookup:**
+
+- WHen the position changes the location's name will be returned
+
+- The "location_changed" event will also be fired with the gllLatlonPicker Node JS object as attribute
+
+- To disable this, you can set queryLocationNameWhenLatLngChanges param to false
+
+**Adjust latitude, longitude and zoom fields on the fly:**
+
+- Set any default latitude, longitude and zoom values. The map shows your data after pressing the update button.
+
+- Any fields can be hidden or visible fields to ease user input
 
 
 INSTALL
 =======
 
 Import jQuery and Google Maps:
-````
-<script src="js/jquery-1.7.2.min.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-````
+
+```
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+```
 
 Import the plugin:
-````
-<link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
-<script src="js/jquery-gmaps-latlon-picker.js"></script>
-````
+
+```
+  <link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
+  <script src="js/jquery-gmaps-latlon-picker.js"></script>
+```
 
 Add a HTML markup:
-````
-<fieldset class="gllpLatlonPicker">
-	<input type="text" class="gllpSearchField">
+
+```
+  <fieldset class="gllpLatlonPicker">
+    <input type="text" class="gllpSearchField">
     <input type="button" class="gllpSearchButton" value="search">
 	<div class="gllpMap">Google Maps</div>
 	<input type="hidden" class="gllpLatitude" value="20"/>
 	<input type="hidden" class="gllpLongitude" value="20"/>
 	<input type="hidden" class="gllpZoom" value="3"/>
-</fieldset>
-````
+  </fieldset>
+```
+
 (See more options in the demo.html)
 
 
 LICENSE
 =======
 
-Do with the code whatever you please.
+[MIT, do-with-the-code-whatever-you-please License](https://github.com/wimagguc/jquery-latitude-longitude-picker-gmaps/blob/master/LICENSE.md)
 
-This code uses the jQuery Javascript library and the Google Maps API. To read more about these, go to:
-http://jquery.com/
-https://developers.google.com/maps/
+This code uses the jQuery Javascript library and the Google Maps API. To read more about these, go to:  
+
+- [jquery.com](http://jquery.com/)
+- [developers.google.com/maps](https://developers.google.com/maps/)
 
 
 ABOUT
@@ -81,7 +89,7 @@ ABOUT
 
 Richard Dancsi
 
-- Blog: http://www.wimagguc.com/
-- Twitter: http://twitter.com/wimagguc
-- Linkedin: http://linkedin.com/in/richarddancsi
-- Google+: https://plus.google.com/u/0/115939246085616544919
+- Blog: [wimagguc.com](http://www.wimagguc.com/)
+- Twitter: [twitter.com/wimagguc](http://twitter.com/wimagguc)
+- Linkedin: [linkedin.com/in/richarddancsi](http://linkedin.com/in/richarddancsi)
+- Google+: [plus.google.com/u/0/115939246085616544919](https://plus.google.com/u/0/115939246085616544919)
