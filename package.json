@@ -1,0 +1,27 @@
+{
+  "name": "jquery-latitude-longitude-picker-gmaps",
+  "version": "1.1.0",
+  "description": "A jQuery Latitude and Longitude plugin to pick a location using Google Maps.",
+  "main": "demo.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wimagguc/jquery-latitude-longitude-picker-gmaps.git"
+  },
+  "keywords": [
+    "location",
+    "latitude",
+    "longitude",
+    "map",
+    "googlemaps",
+    "input"
+  ],
+  "author": "Richard Dancsi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wimagguc/jquery-latitude-longitude-picker-gmaps/issues"
+  },
+  "homepage": "https://github.com/wimagguc/jquery-latitude-longitude-picker-gmaps"
+}

@@ -3,14 +3,14 @@
 	"title": "Google Maps Latitude and Longitude Picker",
 	"description": "A jQuery Latitude and Longitude plugin to pick a location using Google Maps.\n\nSupports multiple maps. Works on touchscreen. Easy to customize markup and CSS.\n\nFeatures: ",
 	"keywords": [
-		"location", 
+		"location",
 		"latitude",
 		"longitude",
-		"map", 
+		"map",
 		"googlemaps",
 		"input"
 	],
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"author": {
 		"name": "Richard Dancsi",
 		"url": "http://www.wimagguc.com/"

@@ -1,5 +1,6 @@
-jQuery Latitude and Longitude Picker for Google Maps
-====================================================
+# jQuery Latitude and Longitude Picker for Google Maps
+
+`1.1.0`
 
 **A jQuery Latitude and Longitude plugin to pick a location using Google Maps.**
 
@@ -8,8 +9,7 @@ Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
 [Check out the live demos.](http://www.wimagguc.com/2013/06/jquery-latitude-and-longitude-picker-gmaps/)
 
 
-FEATURES
-========
+## Features
 
 **Basic functions**
 
@@ -40,8 +40,7 @@ FEATURES
 - Any fields can be hidden or visible fields to ease user input
 
 
-INSTALL
-=======
+## Get started
 
 Import jQuery and Google Maps:
 
@@ -70,11 +69,10 @@ Add a HTML markup:
   </fieldset>
 ```
 
-(See more options in the demo.html)
+(See more options in the demos)
 
 
-LICENSE
-=======
+## License
 
 [MIT, do-with-the-code-whatever-you-please License](https://github.com/wimagguc/jquery-latitude-longitude-picker-gmaps/blob/master/LICENSE.md)
 
@@ -84,8 +82,11 @@ This code uses the jQuery Javascript library and the Google Maps API. To read mo
 - [developers.google.com/maps](https://developers.google.com/maps/)
 
 
-ABOUT
-=====
+## Special thanks
+
+* To [@Beanow](http://github.com/Beanow) for his suggestions
+
+## About
 
 Richard Dancsi
 
