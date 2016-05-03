@@ -1,6 +1,6 @@
 # jQuery Latitude and Longitude Picker for Google Maps
 
-`1.1.0`
+`1.1.1`
 
 **A jQuery Latitude and Longitude plugin to pick a location using Google Maps.**
 
@@ -44,21 +44,21 @@ Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
 
 Import jQuery and Google Maps:
 
-```
+```javascript
   <script src="js/jquery-2.1.1.min.js"></script>
   <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 ```
 
 Import the plugin:
 
-```
+```html
   <link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
   <script src="js/jquery-gmaps-latlon-picker.js"></script>
 ```
 
 Add a HTML markup:
 
-```
+```html
   <fieldset class="gllpLatlonPicker">
     <input type="text" class="gllpSearchField">
     <input type="button" class="gllpSearchButton" value="search">
@@ -76,7 +76,7 @@ Add a HTML markup:
 If you want to modify the default parameters, you need to disable the auto-init procedure first.
 You can do this by adding the following code when importing the plugin scripts:
 
-```
+```html
   <link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
   <script>
     $.gMapsLatLonPickerNoAutoInit = 1;
@@ -86,7 +86,7 @@ You can do this by adding the following code when importing the plugin scripts:
 
 Then copy the init code from "jquery-gmaps-latlon-picker.js" and extend it. Here is an example:
 
-```
+```javascript
 <script>
   $(document).ready(function() {
     // Copy the init code from "jquery-gmaps-latlon-picker.js" and extend it here
@@ -118,6 +118,7 @@ This code uses the jQuery Javascript library and the Google Maps API. To read mo
 ## Special thanks
 
 * To [@Beanow](http://github.com/Beanow) for his suggestions
+* To [@famzah](http://github.com/famzah) for the easy-to-customise default settings code
 
 ## About
 
@@ -126,4 +127,3 @@ Richard Dancsi
 - Blog: [wimagguc.com](http://www.wimagguc.com/)
 - Twitter: [twitter.com/wimagguc](http://twitter.com/wimagguc)
 - Linkedin: [linkedin.com/in/richarddancsi](http://linkedin.com/in/richarddancsi)
-- Google+: [plus.google.com/u/0/115939246085616544919](https://plus.google.com/u/0/115939246085616544919)
