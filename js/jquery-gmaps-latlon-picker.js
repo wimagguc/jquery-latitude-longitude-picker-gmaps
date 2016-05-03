@@ -43,6 +43,9 @@ $.fn.gMapsLatLonPicker = (function() {
 			markerText : "Drag this Marker",
 			error_empty_field : "Couldn't find coordinates for this place",
 			error_no_results : "Couldn't find coordinates for this place"
+		},
+		displayError : function(message) {
+			alert(message);
 		}
 	};
 
@@ -116,7 +119,7 @@ $.fn.gMapsLatLonPicker = (function() {
 	var performSearch = function(string, silent) {
 		if (string == "") {
 			if (!silent) {
-				displayError( _self.params.strings.error_empty_field );
+				_self.params.displayError( _self.params.strings.error_empty_field );
 			}
 			return;
 		}
@@ -129,16 +132,11 @@ $.fn.gMapsLatLonPicker = (function() {
 					setPosition( results[0].geometry.location );
 				} else {
 					if (!silent) {
-						displayError( _self.params.strings.error_no_results );
+						_self.params.displayError( _self.params.strings.error_no_results );
 					}
 				}
 			}
 		);
-	};
-
-	// error function
-	var displayError = function(message) {
-		alert(message);
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -223,9 +221,12 @@ $.fn.gMapsLatLonPicker = (function() {
 				_self.vars.map.setZoom( parseInt( $(_self.vars.cssID + ".gllpZoom").val() ) );
 				setPosition(latlng);
 			});
-		}
+		},
 
-	}
+		// EXPORT PARAMS TO EASILY MODIFY THEM ////////////////////////////////////////////////////
+		params : _self.params
+
+	};
 
 	return publicfunc;
 });
@@ -233,9 +234,12 @@ $.fn.gMapsLatLonPicker = (function() {
 }(jQuery));
 
 $(document).ready( function() {
-	$(".gllpLatlonPicker").each(function() {
-		$(document).gMapsLatLonPicker().init( $(this) );
-	});
+	if (!$.gMapsLatLonPickerNoAutoInit) {
+		$(".gllpLatlonPicker").each(function () {
+			$obj = $(document).gMapsLatLonPicker();
+			$obj.init( $(this) );
+		});
+	}
 });
 
 $(document).bind("location_changed", function(event, object) {
