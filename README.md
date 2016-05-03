@@ -71,6 +71,39 @@ Add a HTML markup:
 
 (See more options in the demos)
 
+## Customize default settings
+
+If you want to modify the default parameters, you need to disable the auto-init procedure first.
+You can do this by adding the following code when importing the plugin scripts:
+
+```
+  <link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
+  <script>
+    $.gMapsLatLonPickerNoAutoInit = 1;
+  </script>
+  <script src="js/jquery-gmaps-latlon-picker.js"></script>
+```
+
+Then copy the init code from "jquery-gmaps-latlon-picker.js" and extend it. Here is an example:
+
+```
+<script>
+  $(document).ready(function() {
+    // Copy the init code from "jquery-gmaps-latlon-picker.js" and extend it here
+    $(".gllpLatlonPicker").each(function() {
+      $obj = $(document).gMapsLatLonPicker();
+
+      $obj.params.strings.markerText = "Drag this Marker (example edit)";
+
+      $obj.params.displayError = function(message) {
+        console.log("MAPS ERROR: " + message); // instead of alert()
+      };
+
+      $obj.init( $(this) );
+    });
+  });
+</script>
+```
 
 ## License
 
