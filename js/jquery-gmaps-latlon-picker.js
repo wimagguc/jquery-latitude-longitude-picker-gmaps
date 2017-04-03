@@ -230,9 +230,7 @@ $.fn.gMapsLatLonPicker = (function() {
 
 	return publicfunc;
 });
-
-}(jQuery));
-
+	
 $(document).ready( function() {
 	if (!$.gMapsLatLonPickerNoAutoInit) {
 		$(".gllpLatlonPicker").each(function () {
@@ -245,3 +243,5 @@ $(document).ready( function() {
 $(document).bind("location_changed", function(event, object) {
 	console.log("changed: " + $(object).attr('id') );
 });
+
+}(jQuery));
