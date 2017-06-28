@@ -47,7 +47,7 @@ $.fn.gMapsLatLonPicker = (function() {
 		displayError : function(message) {
 			alert(message);
 		},
-		LongLatCommaSeperator : true
+		LongLatCommaSeperator : false
 	};
 
 
