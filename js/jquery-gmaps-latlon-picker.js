@@ -30,6 +30,8 @@ $.fn.gMapsLatLonPicker = (function() {
 		defLat : 0,
 		defLng : 0,
 		defZoom : 1,
+        disablePositionUpdateWhenDblClick: false,
+        disablePositionUpdateWhenDrag: false,
 		queryLocationNameWhenLatLngChanges: true,
 		queryElevationWhenLatLngChanges: true,
 		mapOptions : {
@@ -178,15 +180,19 @@ $.fn.gMapsLatLonPicker = (function() {
 				draggable: true
 			});
 
-			// Set position on doubleclick
-			google.maps.event.addListener(_self.vars.map, 'dblclick', function(event) {
-				setPosition(event.latLng);
-			});
+			if(_self.params.disablePositionUpdateWhenDblClick == false) {
+                // Set position on doubleclick
+                google.maps.event.addListener(_self.vars.map, 'dblclick', function (event) {
+                    setPosition(event.latLng);
+                });
+            }
 
-			// Set position on marker move
-			google.maps.event.addListener(_self.vars.marker, 'dragend', function(event) {
-				setPosition(_self.vars.marker.position);
-			});
+            if(_self.params.disablePositionUpdateWhenDrag == false) {
+                // Set position on marker move
+                google.maps.event.addListener(_self.vars.marker, 'dragend', function (event) {
+                    setPosition(_self.vars.marker.position);
+                });
+            }
 
 			// Set zoom feld's value when user changes zoom on the map
 			google.maps.event.addListener(_self.vars.map, 'zoom_changed', function(event) {
