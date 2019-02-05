@@ -1,13 +1,12 @@
 # jQuery Latitude and Longitude Picker for Google Maps
 
-`1.1.1`
+`1.1.2`
 
 **A jQuery Latitude and Longitude plugin to pick a location using Google Maps.**
 
 Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
 
 [Check out the live demos.](http://www.wimagguc.com/2013/06/jquery-latitude-and-longitude-picker-gmaps/)
-
 
 ## Features
 
@@ -40,13 +39,18 @@ Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
 - Any fields can be hidden or visible fields to ease user input
 
 
+## Before you start
+
+To use the Maps JavaScript API and the Geocoding API, you must get an API key which you can then add to your website, or web server. The API key is used to track API requests associated with your project for usage and billing.
+[https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
+
 ## Get started
 
-Import jQuery and Google Maps:
+Import jQuery and Google Maps (don't forget to change the Google Maps script import tag to include your `API key`):
 
 ```javascript
   <script src="js/jquery-2.1.1.min.js"></script>
-  <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script src="//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=false"></script>
 ```
 
 Import the plugin:
