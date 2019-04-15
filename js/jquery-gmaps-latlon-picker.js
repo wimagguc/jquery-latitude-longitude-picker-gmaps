@@ -69,6 +69,7 @@ $.fn.gMapsLatLonPicker = (function() {
 		$(_self.vars.cssID + ".gllpZoom").val( _self.vars.map.getZoom() );
 		$(_self.vars.cssID + ".gllpLongitude").val( position.lng() );
 		$(_self.vars.cssID + ".gllpLatitude").val( position.lat() );
+		$(_self.vars.cssID + ".gllpLatitudeLongitude").val( position.lat() + ',' + position.lng() );
 
 		$(_self.vars.cssID).trigger("location_changed", $(_self.vars.cssID));
 

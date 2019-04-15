@@ -67,6 +67,7 @@ Add a HTML markup:
     <input type="text" class="gllpSearchField">
     <input type="button" class="gllpSearchButton" value="search">
 	<div class="gllpMap">Google Maps</div>
+	<input type="hidden" class="gllpLatitudeLongitude" value="20,20"/>
 	<input type="hidden" class="gllpLatitude" value="20"/>
 	<input type="hidden" class="gllpLongitude" value="20"/>
 	<input type="hidden" class="gllpZoom" value="3"/>
