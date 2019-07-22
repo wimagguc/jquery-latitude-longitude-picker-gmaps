@@ -194,6 +194,12 @@ $.fn.gMapsLatLonPicker = (function() {
 				$(_self.vars.cssID).trigger("location_changed", $(_self.vars.cssID));
 			});
 
+			google.maps.event.addDomListener(window, "resize", function() {
+				var center = map.getCenter();
+				google.maps.event.trigger(map, "resize");
+				map.setCenter(center);
+			});
+
 			// Update location and zoom values based on input field's value
 			$(_self.vars.cssID + ".gllpUpdateButton").bind("click", function() {
 				var lat = $(_self.vars.cssID + ".gllpLatitude").val();
