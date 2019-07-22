@@ -46,7 +46,8 @@ $.fn.gMapsLatLonPicker = (function() {
 		},
 		displayError : function(message) {
 			alert(message);
-		}
+		},
+		LongLatCommaSeperator : false
 	};
 
 
@@ -66,9 +67,16 @@ $.fn.gMapsLatLonPicker = (function() {
 		_self.vars.marker.setPosition(position);
 		_self.vars.map.panTo(position);
 
-		$(_self.vars.cssID + ".gllpZoom").val( _self.vars.map.getZoom() );
-		$(_self.vars.cssID + ".gllpLongitude").val( position.lng() );
-		$(_self.vars.cssID + ".gllpLatitude").val( position.lat() );
+		$(_self.vars.cssID + ".gllpZoom").val(_self.vars.map.getZoom());
+
+		if (_self.params.LongLatCommaSeperator) {
+		    $(_self.vars.cssID + ".gllpLongitude").val(position.lng().toString().replace(".", ","));
+		    $(_self.vars.cssID + ".gllpLatitude").val(position.lat().toString().replace(".", ","));
+		}
+		else {
+		    $(_self.vars.cssID + ".gllpLongitude").val(position.lng());
+		    $(_self.vars.cssID + ".gllpLatitude").val(position.lat());
+		}
 
 		$(_self.vars.cssID).trigger("location_changed", $(_self.vars.cssID));
 
