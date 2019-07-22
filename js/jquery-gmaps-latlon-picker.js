@@ -30,6 +30,8 @@ $.fn.gMapsLatLonPicker = (function() {
 		defLat : 0,
 		defLng : 0,
 		defZoom : 1,
+        disablePositionUpdateWhenDblClick: false,
+        disablePositionUpdateWhenDrag: false,
 		queryLocationNameWhenLatLngChanges: true,
 		queryElevationWhenLatLngChanges: true,
 		mapOptions : {
@@ -39,6 +41,9 @@ $.fn.gMapsLatLonPicker = (function() {
 			zoomControlOptions: true,
 			streetViewControl: false
 		},
+        markerOptions : {
+            draggable: true
+        },
 		strings : {
 			markerText : "Drag this Marker",
 			error_empty_field : "Couldn't find coordinates for this place",
@@ -171,22 +176,26 @@ $.fn.gMapsLatLonPicker = (function() {
 			_self.vars.geocoder = new google.maps.Geocoder();
 			_self.vars.elevator = new google.maps.ElevationService();
 
-			_self.vars.marker = new google.maps.Marker({
-				position: _self.vars.LATLNG,
-				map: _self.vars.map,
-				title: _self.params.strings.markerText,
-				draggable: true
-			});
+            _self.vars.MARKOPTIONS		 	= _self.params.markerOptions;
+            _self.vars.MARKOPTIONS.position = _self.vars.LATLNG;
+            _self.vars.MARKOPTIONS.title	= _self.params.strings.markerText;
+            _self.vars.MARKOPTIONS.map		= _self.vars.map;
 
-			// Set position on doubleclick
-			google.maps.event.addListener(_self.vars.map, 'dblclick', function(event) {
-				setPosition(event.latLng);
-			});
+            _self.vars.marker = new google.maps.Marker(_self.vars.MARKOPTIONS);
 
-			// Set position on marker move
-			google.maps.event.addListener(_self.vars.marker, 'dragend', function(event) {
-				setPosition(_self.vars.marker.position);
-			});
+			if(_self.params.disablePositionUpdateWhenDblClick == false) {
+                // Set position on doubleclick
+                google.maps.event.addListener(_self.vars.map, 'dblclick', function (event) {
+                    setPosition(event.latLng);
+                });
+            }
+
+            if(_self.params.disablePositionUpdateWhenDrag == false) {
+                // Set position on marker move
+                google.maps.event.addListener(_self.vars.marker, 'dragend', function (event) {
+                    setPosition(_self.vars.marker.position);
+                });
+            }
 
 			// Set zoom feld's value when user changes zoom on the map
 			google.maps.event.addListener(_self.vars.map, 'zoom_changed', function(event) {
